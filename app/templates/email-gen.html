@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Email Finder</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/email-gen.css') }}">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="container">  
+  <form id="contact" action="/email-gen/submit" method="post">
+    <h3>Email Finder</h3>
+    <h4>Enter Info To Generate List!</h4>
+    <fieldset>
+      <input name="name" placeholder="Full Name" type="text" tabindex="1" required autofocus>
+    </fieldset>
+    <fieldset>
+      <input name="domain" placeholder="Domain Name" type="text" tabindex="2" required>
+    </fieldset>
+    <fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+    </fieldset>
+  </form>
+ 
+  
+</div>
+<!-- partial -->
+  
+</body>
+</html>

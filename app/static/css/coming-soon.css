@@ -1,0 +1,41 @@
+body {
+  background: #00091b;
+  color: #fff;
+}
+
+.wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  white-space: pre;
+}
+
+h1 {
+  font-size: 7vw;
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.dot {
+  color: #4febfe;
+}
+
+h1 span:nth-child(12) {
+  color: #4febfe;
+}
+
+span {
+  opacity: 0;
+  transition: all 0.4s ease;
+  transform: translateY(50px);
+  display: inline-block;
+}
+
+span.fade {
+  opacity: 1;
+  transform: translateY(0px);
+}

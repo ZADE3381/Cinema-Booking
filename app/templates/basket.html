@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Basket</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat:400,700'>
+<style type="text/css">
+html {
+  font-family: 'Montserrat', sans-serif;
+}
+
+pre.user {
+  background: #213446;
+  color: white;
+}
+</style>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<div class="hero is-dark is-fullheight">
+  <div class="hero-body">
+    <div id="body" class="container has-text-centered">
+        <h1 id="time_remaining_h1" style="color:red;font-size:40px;">15s Left!</h1>
+        <p style="color:red;">Do not refresh page, otherwise seat/s will be lost!</p>
+        Your seat/s has been marked as "B" (For Basket) in the excel spreadsheet.
+        <br><div id="time_remaining">
+        You Have 15s left to book seat/s.
+        </div>
+        (You Would Normally Enter Bank Details Instead)
+        <br><br>
+        <script>
+    var timeLeft = 15;
+    var elem = document.getElementById('time_remaining_h1');
+    var elem2 = document.getElementById('time_remaining');
+    var timerId = setInterval(countdown, 1000);
+
+    function countdown() {
+      if (timeLeft == -1) {
+        clearTimeout(timerId);
+        var postarray = function() {
+        var queryString = "?reason=timeout";
+        window.location.replace("basketfail" + queryString);
+        }
+        postarray()
+      } else {
+        elem.innerHTML = timeLeft + 's Left!';
+        elem2.innerHTML = 'You Have ' + timeLeft + 's left to book seat/s.';
+        timeLeft--;
+      }
+    }
+</script>
+      <button class="button is-primary is-large is-inverted is-outlined is-rounded">
+        BOOK SEAT
+      </button>
+        <br><br>
+        <button class="button is-danger is-inverted is-outlined ">
+        CANCEL
+      </button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

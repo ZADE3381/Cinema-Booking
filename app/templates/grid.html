@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        .seat {
+            height: 30px;
+            width: 30px;
+            border: 1px solid #808080;
+           cursor:pointer;
+           background-color: #ffffff;
+            line-height:30px;
+            text-align:center;
+        }
+        .walk{
+            padding-left:20px;
+        }
+        #driver {
+            background-color:gray;          
+            height: 20px;
+            border-radius: 50%;
+        }
+        .seat {
+            height: 30px;
+            width: 30px;
+            border: 1px solid gray;
+           cursor:pointer;
+           background-color:white;
+           text-align: center;
+        }
+        .unselectable {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
+
+   
+
+</head>
+<body>
+
+    <div class="unselectable" style="border:1px solid gray; width:768px;">
+            <table>
+
+
+            <tr>
+                <td><div class="seat">A1</div> </td>
+                <td><div class="seat">A2</div></td>
+                <td><div class="seat">A3</div></td>
+                <td><div class="seat">A4</div></td>
+                <td><div class="seat">A5</div></td>
+                <td><div class="seat">A6</div> </td>
+                <td><div class="seat">A7</div></td>
+                <td><div class="seat">A8</div></td>
+                <td><div class="seat">A9</div></td>
+                <td><div class="seat">A10</div></td>
+                <td class="walk">    </td>
+                <td class="walk">    </td>
+                <td><div class="seat">A11</div> </td>
+                <td><div class="seat">A12</div></td>
+                <td><div class="seat">A13</div></td>
+                <td><div class="seat">A14</div></td>
+                <td><div class="seat">A15</div> </td>
+                <td><div class="seat">A16</div></td>
+                <td><div class="seat">A17</div></td>
+                <td><div class="seat">A18</div></td>
+                <td><div class="seat">A19</div></td>
+                <td><div class="seat">A20</div></td>
+            </tr>
+
+
+            <tr>
+                <td><div class="seat">B1</div> </td>
+                <td><div class="seat">B2</div></td>
+                <td><div class="seat">B3</div></td>
+                <td><div class="seat">B4</div></td>
+                <td><div class="seat">B5</div></td>
+                <td><div class="seat">B6</div> </td>
+                <td><div class="seat">B7</div></td>
+                <td><div class="seat">B8</div></td>
+                <td><div class="seat">B9</div></td>
+                <td><div class="seat">B10</div></td>
+                <td class="walk">    </td>
+                <td class="walk">    </td>
+                <td><div class="seat">B11</div> </td>
+                <td><div class="seat">B12</div></td>
+                <td><div class="seat">B13</div></td>
+                <td><div class="seat">B14</div></td>
+                <td><div class="seat">B15</div> </td>
+                <td><div class="seat">B16</div></td>
+                <td><div class="seat">B17</div></td>
+                <td><div class="seat">B18</div></td>
+                <td><div class="seat">B19</div></td>
+                <td><div class="seat">B20</div></td>
+            </tr>
+
+
+            <tr>
+                <td><div class="seat">C1</div> </td>
+                <td><div class="seat">C2</div></td>
+                <td><div class="seat">C3</div></td>
+                <td><div class="seat">C4</div></td>
+                <td><div class="seat">C5</div></td>
+                <td><div class="seat">C6</div> </td>
+                <td><div class="seat">C7</div></td>
+                <td><div class="seat">C8</div></td>
+                <td><div class="seat">C9</div></td>
+                <td><div class="seat">C10</div></td>
+                <td class="walk">    </td>
+                <td class="walk">    </td>
+                <td><div class="seat">C11</div> </td>
+                <td><div class="seat">C12</div></td>
+                <td><div class="seat">C13</div></td>
+                <td><div class="seat">C14</div></td>
+                <td><div class="seat">C15</div> </td>
+                <td><div class="seat">C16</div></td>
+                <td><div class="seat">C17</div></td>
+                <td><div class="seat">C18</div></td>
+                <td><div class="seat">C19</div></td>
+                <td><div class="seat">C20</div></td>
+            </tr>
+
+
+            <tr>
+                <td><div class="seat">D1</div> </td>
+                <td><div class="seat">D2</div></td>
+                <td><div class="seat">D3</div></td>
+                <td><div class="seat">D4</div></td>
+                <td><div class="seat">D5</div></td>
+                <td><div class="seat">D6</div> </td>
+                <td><div class="seat">D7</div></td>
+                <td><div class="seat">D8</div></td>
+                <td><div class="seat">D9</div></td>
+                <td><div class="seat">D10</div></td>
+                <td class="walk">    </td>
+                <td class="walk">    </td>
+                <td><div class="seat">D11</div> </td>
+                <td><div class="seat">D12</div></td>
+                <td><div class="seat">D13</div></td>
+                <td><div class="seat">D14</div></td>
+                <td><div class="seat">D15</div> </td>
+                <td><div class="seat">D16</div></td>
+                <td><div class="seat">D17</div></td>
+                <td><div class="seat">D18</div></td>
+                <td><div class="seat">D19</div></td>
+                <td><div class="seat">D20</div></td>
+            </tr>
+
+
+            <tr>
+                <td><div class="seat">E1</div> </td>
+                <td><div class="seat">E2</div></td>
+                <td><div class="seat">E3</div></td>
+                <td><div class="seat">E4</div></td>
+                <td><div class="seat">E5</div></td>
+                <td><div class="seat">E6</div> </td>
+                <td><div class="seat">E7</div></td>
+                <td><div class="seat">E8</div></td>
+                <td><div class="seat">E9</div></td>
+                <td><div class="seat">E10</div></td>
+                <td class="walk">    </td>
+                <td class="walk">    </td>
+                <td><div class="seat">E11</div> </td>
+                <td><div class="seat">E12</div></td>
+                <td><div class="seat">E13</div></td>
+                <td><div class="seat">E14</div></td>
+                <td><div class="seat">E15</div> </td>
+                <td><div class="seat">E16</div></td>
+                <td><div class="seat">E17</div></td>
+                <td><div class="seat">E18</div></td>
+                <td><div class="seat">E19</div></td>
+                <td><div class="seat">E20</div></td>
+            </tr>
+
+
+            <tr>
+                <td><div class="seat">F1</div> </td>
+                <td><div class="seat">F2</div></td>
+                <td><div class="seat">F3</div></td>
+                <td><div class="seat">F4</div></td>
+                <td><div class="seat">F5</div></td>
+                <td><div class="seat">F6</div> </td>
+                <td><div class="seat">F7</div></td>
+                <td><div class="seat">F8</div></td>
+                <td><div class="seat">F9</div></td>
+                <td><div class="seat">F10</div></td>
+                <td class="walk">    </td>
+                <td class="walk">    </td>
+                <td><div class="seat">F11</div> </td>
+                <td><div class="seat">F12</div></td>
+                <td><div class="seat">F13</div></td>
+                <td><div class="seat">F14</div></td>
+                <td><div class="seat">F15</div> </td>
+                <td><div class="seat">F16</div></td>
+                <td><div class="seat">F17</div></td>
+                <td><div class="seat">F18</div></td>
+                <td><div class="seat">F19</div></td>
+                <td><div class="seat">F20</div></td>
+            </tr>
+
+
+            <tr>
+                <td><div class="seat">G1</div> </td>
+                <td><div class="seat">G2</div></td>
+                <td><div class="seat">G3</div></td>
+                <td><div class="seat">G4</div></td>
+                <td><div class="seat">G5</div></td>
+                <td><div class="seat">G6</div> </td>
+                <td><div class="seat">G7</div></td>
+                <td><div class="seat">G8</div></td>
+                <td><div class="seat">G9</div></td>
+                <td><div class="seat">G10</div></td>
+                <td class="walk">    </td>
+                <td class="walk">    </td>
+                <td><div class="seat">G11</div> </td>
+                <td><div class="seat">G12</div></td>
+                <td><div class="seat">G13</div></td>
+                <td><div class="seat">G14</div></td>
+                <td><div class="seat">G15</div> </td>
+                <td><div class="seat">G16</div></td>
+                <td><div class="seat">G17</div></td>
+                <td><div class="seat">G18</div></td>
+                <td><div class="seat">G19</div></td>
+                <td><div class="seat">G20</div></td>
+            </tr>
+
+
+            <tr>
+                <td><div class="seat">H1</div> </td>
+                <td><div class="seat">H2</div></td>
+                <td><div class="seat">H3</div></td>
+                <td><div class="seat">H4</div></td>
+                <td><div class="seat">H5</div></td>
+                <td><div class="seat">H6</div> </td>
+                <td><div class="seat">H7</div></td>
+                <td><div class="seat">H8</div></td>
+                <td><div class="seat">H9</div></td>
+                <td><div class="seat">H10</div></td>
+                <td class="walk">    </td>
+                <td class="walk">    </td>
+                <td><div class="seat">H11</div> </td>
+                <td><div class="seat">H12</div></td>
+                <td><div class="seat">H13</div></td>
+                <td><div class="seat">H14</div></td>
+                <td><div class="seat">H15</div> </td>
+                <td><div class="seat">H16</div></td>
+                <td><div class="seat">H17</div></td>
+                <td><div class="seat">H18</div></td>
+                <td><div class="seat">H19</div></td>
+                <td><div class="seat">H20</div></td>
+            </tr>
+
+
+            <tr>
+                <td><div class="seat">I1</div> </td>
+                <td><div class="seat">I2</div></td>
+                <td><div class="seat">I3</div></td>
+                <td><div class="seat">I4</div></td>
+                <td><div class="seat">I5</div></td>
+                <td><div class="seat">I6</div> </td>
+                <td><div class="seat">I7</div></td>
+                <td><div class="seat">I8</div></td>
+                <td><div class="seat">I9</div></td>
+                <td><div class="seat">I10</div></td>
+                <td class="walk">    </td>
+                <td class="walk">    </td>
+                <td><div class="seat">I11</div> </td>
+                <td><div class="seat">I12</div></td>
+                <td><div class="seat">I13</div></td>
+                <td><div class="seat">I14</div></td>
+                <td><div class="seat">I15</div> </td>
+                <td><div class="seat">I16</div></td>
+                <td><div class="seat">I17</div></td>
+                <td><div class="seat">I18</div></td>
+                <td><div class="seat">I19</div></td>
+                <td><div class="seat">I20</div></td>
+            </tr>
+
+
+            <tr>
+                <td><div class="seat">J1</div> </td>
+                <td><div class="seat">J2</div></td>
+                <td><div class="seat">J3</div></td>
+                <td><div class="seat">J4</div></td>
+                <td><div class="seat">J5</div></td>
+                <td><div class="seat">J6</div> </td>
+                <td><div class="seat">J7</div></td>
+                <td><div class="seat">J8</div></td>
+                <td><div class="seat">J9</div></td>
+                <td><div class="seat">J10</div></td>
+                <td class="walk">    </td>
+                <td class="walk">    </td>
+                <td><div class="seat">J11</div> </td>
+                <td><div class="seat">J12</div></td>
+                <td><div class="seat">J13</div></td>
+                <td><div class="seat">J14</div></td>
+                <td><div class="seat">J15</div> </td>
+                <td><div class="seat">J16</div></td>
+                <td><div class="seat">J17</div></td>
+                <td><div class="seat">J18</div></td>
+                <td><div class="seat">J19</div></td>
+                <td><div class="seat">J20</div></td>
+            </tr>
+
+
+            <tr>
+                <td><div class="seat">K1</div> </td>
+                <td><div class="seat">K2</div></td>
+                <td><div class="seat">K3</div></td>
+                <td><div class="seat">K4</div></td>
+                <td><div class="seat">K5</div></td>
+                <td><div class="seat">K6</div> </td>
+                <td><div class="seat">K7</div></td>
+                <td><div class="seat">K8</div></td>
+                <td><div class="seat">K9</div></td>
+                <td><div class="seat">K10</div></td>
+                <td class="walk">    </td>
+                <td class="walk">    </td>
+                <td><div class="seat">K11</div> </td>
+                <td><div class="seat">K12</div></td>
+                <td><div class="seat">K13</div></td>
+                <td><div class="seat">K14</div></td>
+                <td><div class="seat">K15</div> </td>
+                <td><div class="seat">K16</div></td>
+                <td><div class="seat">K17</div></td>
+                <td><div class="seat">K18</div></td>
+                <td><div class="seat">K19</div></td>
+                <td><div class="seat">K20</div></td>
+            </tr>
+
+
+            <tr>
+                <td><div class="seat">L1</div> </td>
+                <td><div class="seat">L2</div></td>
+                <td><div class="seat">L3</div></td>
+                <td><div class="seat">L4</div></td>
+                <td><div class="seat">L5</div></td>
+                <td><div class="seat">L6</div> </td>
+                <td><div class="seat">L7</div></td>
+                <td><div class="seat">L8</div></td>
+                <td><div class="seat">L9</div></td>
+                <td><div class="seat">L10</div></td>
+                <td class="walk">    </td>
+                <td class="walk">    </td>
+                <td><div class="seat">L11</div> </td>
+                <td><div class="seat">L12</div></td>
+                <td><div class="seat">L13</div></td>
+                <td><div class="seat">L14</div></td>
+                <td><div class="seat">L15</div> </td>
+                <td><div class="seat">L16</div></td>
+                <td><div class="seat">L17</div></td>
+                <td><div class="seat">L18</div></td>
+                <td><div class="seat">L19</div></td>
+                <td><div class="seat">L20</div></td>
+            </tr>
+
+
+            <tr>
+                <td><div class="seat">M1</div> </td>
+                <td><div class="seat">M2</div></td>
+                <td><div class="seat">M3</div></td>
+                <td><div class="seat">M4</div></td>
+                <td><div class="seat">M5</div></td>
+                <td><div class="seat">M6</div> </td>
+                <td><div class="seat">M7</div></td>
+                <td><div class="seat">M8</div></td>
+                <td><div class="seat">M9</div></td>
+                <td><div class="seat">M10</div></td>
+                <td class="walk">    </td>
+                <td class="walk">    </td>
+                <td><div class="seat">M11</div> </td>
+                <td><div class="seat">M12</div></td>
+                <td><div class="seat">M13</div></td>
+                <td><div class="seat">M14</div></td>
+                <td><div class="seat">M15</div> </td>
+                <td><div class="seat">M16</div></td>
+                <td><div class="seat">M17</div></td>
+                <td><div class="seat">M18</div></td>
+                <td><div class="seat">M19</div></td>
+                <td><div class="seat">M20</div></td>
+            </tr>
+
+
+            <tr>
+                <td><div class="seat">N1</div> </td>
+                <td><div class="seat">N2</div></td>
+                <td><div class="seat">N3</div></td>
+                <td><div class="seat">N4</div></td>
+                <td><div class="seat">N5</div></td>
+                <td><div class="seat">N6</div> </td>
+                <td><div class="seat">N7</div></td>
+                <td><div class="seat">N8</div></td>
+                <td><div class="seat">N9</div></td>
+                <td><div class="seat">N10</div></td>
+                <td class="walk">    </td>
+                <td class="walk">    </td>
+                <td><div class="seat">N11</div> </td>
+                <td><div class="seat">N12</div></td>
+                <td><div class="seat">N13</div></td>
+                <td><div class="seat">N14</div></td>
+                <td><div class="seat">N15</div> </td>
+                <td><div class="seat">N16</div></td>
+                <td><div class="seat">N17</div></td>
+                <td><div class="seat">N18</div></td>
+                <td><div class="seat">N19</div></td>
+                <td><div class="seat">N20</div></td>
+            </tr>
+
+
+            <tr>
+                <td><div class="seat">O1</div> </td>
+                <td><div class="seat">O2</div></td>
+                <td><div class="seat">O3</div></td>
+                <td><div class="seat">O4</div></td>
+                <td><div class="seat">O5</div></td>
+                <td><div class="seat">O6</div> </td>
+                <td><div class="seat">O7</div></td>
+                <td><div class="seat">O8</div></td>
+                <td><div class="seat">O9</div></td>
+                <td><div class="seat">O10</div></td>
+                <td class="walk">    </td>
+                <td class="walk">    </td>
+                <td><div class="seat">O11</div> </td>
+                <td><div class="seat">O12</div></td>
+                <td><div class="seat">O13</div></td>
+                <td><div class="seat">O14</div></td>
+                <td><div class="seat">O15</div> </td>
+                <td><div class="seat">O16</div></td>
+                <td><div class="seat">O17</div></td>
+                <td><div class="seat">O18</div></td>
+                <td><div class="seat">O19</div></td>
+                <td><div class="seat">O20</div></td>
+            </tr>
+
+
+            <tr>
+                <td><div class="seat">P1</div> </td>
+                <td><div class="seat">P2</div></td>
+                <td><div class="seat">P3</div></td>
+                <td><div class="seat">P4</div></td>
+                <td><div class="seat">P5</div></td>
+                <td><div class="seat">P6</div> </td>
+                <td><div class="seat">P7</div></td>
+                <td><div class="seat">P8</div></td>
+                <td><div class="seat">P9</div></td>
+                <td><div class="seat">P10</div></td>
+                <td class="walk">    </td>
+                <td class="walk">    </td>
+                <td><div class="seat">P11</div> </td>
+                <td><div class="seat">P12</div></td>
+                <td><div class="seat">P13</div></td>
+                <td><div class="seat">P14</div></td>
+                <td><div class="seat">P15</div> </td>
+                <td><div class="seat">P16</div></td>
+                <td><div class="seat">P17</div></td>
+                <td><div class="seat">P18</div></td>
+                <td><div class="seat">P19</div></td>
+                <td><div class="seat">P20</div></td>
+            </tr>
+
+
+            <tr>
+                <td><div class="seat">Q1</div> </td>
+                <td><div class="seat">Q2</div></td>
+                <td><div class="seat">Q3</div></td>
+                <td><div class="seat">Q4</div></td>
+                <td><div class="seat">Q5</div></td>
+                <td><div class="seat">Q6</div> </td>
+                <td><div class="seat">Q7</div></td>
+                <td><div class="seat">Q8</div></td>
+                <td><div class="seat">Q9</div></td>
+                <td><div class="seat">Q10</div></td>
+                <td class="walk">    </td>
+                <td class="walk">    </td>
+                <td><div class="seat">Q11</div> </td>
+                <td><div class="seat">Q12</div></td>
+                <td><div class="seat">Q13</div></td>
+                <td><div class="seat">Q14</div></td>
+                <td><div class="seat">Q15</div> </td>
+                <td><div class="seat">Q16</div></td>
+                <td><div class="seat">Q17</div></td>
+                <td><div class="seat">Q18</div></td>
+                <td><div class="seat">Q19</div></td>
+                <td><div class="seat">Q20</div></td>
+            </tr>
+
+
+            <tr>
+                <td><div class="seat">R1</div> </td>
+                <td><div class="seat">R2</div></td>
+                <td><div class="seat">R3</div></td>
+                <td><div class="seat">R4</div></td>
+                <td><div class="seat">R5</div></td>
+                <td><div class="seat">R6</div> </td>
+                <td><div class="seat">R7</div></td>
+                <td><div class="seat">R8</div></td>
+                <td><div class="seat">R9</div></td>
+                <td><div class="seat">R10</div></td>
+                <td class="walk">    </td>
+                <td class="walk">    </td>
+                <td><div class="seat">R11</div> </td>
+                <td><div class="seat">R12</div></td>
+                <td><div class="seat">R13</div></td>
+                <td><div class="seat">R14</div></td>
+                <td><div class="seat">R15</div> </td>
+                <td><div class="seat">R16</div></td>
+                <td><div class="seat">R17</div></td>
+                <td><div class="seat">R18</div></td>
+                <td><div class="seat">R19</div></td>
+                <td><div class="seat">R20</div></td>
+            </tr>
+
+
+            <tr>
+                <td><div class="seat">S1</div> </td>
+                <td><div class="seat">S2</div></td>
+                <td><div class="seat">S3</div></td>
+                <td><div class="seat">S4</div></td>
+                <td><div class="seat">S5</div></td>
+                <td><div class="seat">S6</div> </td>
+                <td><div class="seat">S7</div></td>
+                <td><div class="seat">S8</div></td>
+                <td><div class="seat">S9</div></td>
+                <td><div class="seat">S10</div></td>
+                <td class="walk">    </td>
+                <td class="walk">    </td>
+                <td><div class="seat">S11</div> </td>
+                <td><div class="seat">S12</div></td>
+                <td><div class="seat">S13</div></td>
+                <td><div class="seat">S14</div></td>
+                <td><div class="seat">S15</div> </td>
+                <td><div class="seat">S16</div></td>
+                <td><div class="seat">S17</div></td>
+                <td><div class="seat">S18</div></td>
+                <td><div class="seat">S19</div></td>
+                <td><div class="seat">S20</div></td>
+            </tr>
+
+
+            <tr>
+                <td><div class="seat">T1</div> </td>
+                <td><div class="seat">T2</div></td>
+                <td><div class="seat">T3</div></td>
+                <td><div class="seat">T4</div></td>
+                <td><div class="seat">T5</div></td>
+                <td><div class="seat">T6</div> </td>
+                <td><div class="seat">T7</div></td>
+                <td><div class="seat">T8</div></td>
+                <td><div class="seat">T9</div></td>
+                <td><div class="seat">T10</div></td>
+                <td class="walk">    </td>
+                <td class="walk">    </td>
+                <td><div class="seat">T11</div> </td>
+                <td><div class="seat">T12</div></td>
+                <td><div class="seat">T13</div></td>
+                <td><div class="seat">T14</div></td>
+                <td><div class="seat">T15</div> </td>
+                <td><div class="seat">T16</div></td>
+                <td><div class="seat">T17</div></td>
+                <td><div class="seat">T18</div></td>
+                <td><div class="seat">T19</div></td>
+                <td><div class="seat">T20</div></td>
+            </tr>
+
+
+
+
+        </table>
+    </div>
+    <br>
+    <input type="radio" name="ticketType" id="ticketTypeAdult" value="A" checked >Adult <div style="width:10px;height:10px;border:1px solid gray;background: blue;display:inline-block;"> </div><br>
+    <input type="radio" name="ticketType" id="ticketTypeChild" value="C" >Child <div style="width:10px;height:10px;border:1px solid gray;background: red;display:inline-block;"> </div><br>
+    <input type="radio" name="ticketType" id="ticketTypePensioner" value="P" >Pensioner <div style="width:10px;height:10px;border:1px solid gray;background: yellow;display:inline-block;"> </div><br>
+    <h1 id="demo">0</h1>
+    <input id="clickMe" type="button" value="Next" onclick="postarray();" />
+    <script>
+        allSeatsFlask =  {{ allSeats|tojson }}
+        selected = {}
+        allSeats = document.querySelectorAll('.seat');
+        for (var i = 0; i < allSeats.length; i++) {
+            var seat = allSeats[i];
+            if (allSeatsFlask.includes(seat.innerHTML)) {
+                seat.style.backgroundColor = 'gray'
+                seat.style.cursor = 'not-allowed'
+                    }
+            seat.addEventListener('click', function () {
+                var bgclr = this.style.backgroundColor;
+                if(bgclr =='red' || bgclr =='blue' || bgclr =='yellow'){
+                    this.style.backgroundColor = 'white'
+                    delete selected[this.textContent]
+                    for(var key in selected) {console.log(key + ": " + selected[key]);}
+                    console.log("--------")
+                    document.getElementById("demo").innerHTML = Object.keys(selected).length
+                  }
+                else if(this.style.backgroundColor === 'gray'){
+
+                }
+                else if(document.getElementById('ticketTypeChild').checked){
+                    this.style.backgroundColor = 'red';
+                    selected[this.textContent] = "C";
+                    for(var key in selected) {console.log(key + " : " + selected[key]);}
+                    console.log("--------")
+                    document.getElementById("demo").innerHTML = Object.keys(selected).length
+                  }
+                    //document.getElementById("demo").innerHTML =
+                else if(document.getElementById('ticketTypeAdult').checked){
+                    this.style.backgroundColor = 'blue'
+                    selected[this.textContent] = "A";
+                    for(var key in selected) {console.log(key + " : " + selected[key]);}
+                    console.log("--------")
+                    document.getElementById("demo").innerHTML = Object.keys(selected).length
+                  }
+                else if(document.getElementById('ticketTypePensioner').checked){
+                    this.style.backgroundColor = 'yellow'
+                    selected[this.textContent] = "P";
+                    for(var key in selected) {console.log(key + " : " + selected[key]);}
+                    console.log("--------")
+                    document.getElementById("demo").innerHTML = Object.keys(selected).length
+                  }
+
+            }, false);
+        }
+      var post = function(data){
+      var queryString = "?data=" + data;
+      window.location.replace("basket" + queryString);
+      }
+      var postarray = function() {
+        
+        post(JSON.stringify(selected))
+      }
+    </script>
+    {{ allSeats }}
+
+</body>
+</html>

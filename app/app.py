@@ -1,14 +1,12 @@
-import ast
 import json
 import time
 from flask import Flask, render_template, request
 import threading
-from dataToCoords import *
-from excelEditor import editCell, getAllSeats, checkCell
+from app.dataToCoords import *
+from app.excelEditor import editCell, getAllSeats, checkCell
 import datetime
 
 dt = datetime.datetime.now()
-
 app = Flask(__name__)
 
 

@@ -15,7 +15,7 @@ def basket_to_excel(rawData):
     data_to_excelIteration = 0
     while data_to_excelIteration < len(data.keys()):
         keys = list(data.keys())
-        editCell("test.xlsx", changeToExcelCoords(keys[data_to_excelIteration])[0],
+        editCell("static/test.xlsx", changeToExcelCoords(keys[data_to_excelIteration])[0],
                  changeToExcelCoords(keys[data_to_excelIteration])[1], "B")
         data_to_excelIteration = data_to_excelIteration + 1
 
@@ -26,9 +26,9 @@ def basketTimerCheck(rawData, timer):
     basketTimerCheckIteration = 0
     while basketTimerCheckIteration < len(data.keys()):
         keys = list(data.keys())
-        if checkCell("test.xlsx", changeToExcelCoords(keys[basketTimerCheckIteration])[0],
+        if checkCell("static/test.xlsx", changeToExcelCoords(keys[basketTimerCheckIteration])[0],
                      changeToExcelCoords(keys[basketTimerCheckIteration])[1], "B"):
-            editCell("test.xlsx", changeToExcelCoords(keys[basketTimerCheckIteration])[0],
+            editCell("static/test.xlsx", changeToExcelCoords(keys[basketTimerCheckIteration])[0],
                      changeToExcelCoords(keys[basketTimerCheckIteration])[1], "")
         basketTimerCheckIteration = basketTimerCheckIteration + 1
 
@@ -46,7 +46,7 @@ def data_to_excel(rawData):
     data_to_excelIteration = 0
     while data_to_excelIteration < len(data.keys()):
         keys = list(data.keys())
-        editCell("test.xlsx", changeToExcelCoords(keys[data_to_excelIteration])[0],
+        editCell("static/test.xlsx", changeToExcelCoords(keys[data_to_excelIteration])[0],
                  changeToExcelCoords(keys[data_to_excelIteration])[1], data[keys[data_to_excelIteration]])
         data_to_excelIteration = data_to_excelIteration + 1
 
@@ -56,7 +56,7 @@ def removeBasketFromExcel(rawData):
     data_to_excelIteration = 0
     while data_to_excelIteration < len(data.keys()):
         keys = list(data.keys())
-        editCell("test.xlsx", changeToExcelCoords(keys[data_to_excelIteration])[0],
+        editCell("static/test.xlsx", changeToExcelCoords(keys[data_to_excelIteration])[0],
                  changeToExcelCoords(keys[data_to_excelIteration])[1], "")
         data_to_excelIteration = data_to_excelIteration + 1
 
@@ -76,7 +76,7 @@ def checkIfBooked(file, data):
 def home():
     # thread = threading.Thread(target=editCell, args=("test.xlsx", 4, 2, "C"))
     # thread.start()
-    return render_template("grid.html", allSeats=getAllSeatsFormatted("test.xlsx"))
+    return render_template("grid.html", allSeats=getAllSeatsFormatted("static/test.xlsx"))
 
 
 @app.route('/book')
@@ -87,7 +87,7 @@ def book():
 
 @app.route('/basket')
 def basket():
-    if checkIfBooked("test.xlsx", request.args.get('data')):
+    if checkIfBooked("static/test.xlsx", request.args.get('data')):
         return "Failed (Seat Has Already Been Booked)"
     else:
         basket_to_excel(request.args.get('data'))

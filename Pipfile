@@ -12,6 +12,7 @@ flask-talisman = "==0.7.0"
 requests = "*"
 twilio = "*"
 flask-api = "*"
+openpyxl = "*"
 
 [requires]
 python_version = "3.8"

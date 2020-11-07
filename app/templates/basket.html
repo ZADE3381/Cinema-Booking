@@ -28,7 +28,6 @@ pre.user {
         You Have 15s left to book seat/s.
         </div>
         (You Would Normally Enter Bank Details Instead)
-        <br><br>
         <script>
     var timeLeft = 15;
     var elem = document.getElementById('time_remaining_h1');
@@ -50,16 +49,49 @@ pre.user {
       }
     }
 </script>
+        <br><br>
+        <a href="/book?data={{ data }}">
       <button class="button is-primary is-large is-inverted is-outlined is-rounded">
         BOOK SEAT
       </button>
+        </a>
         <br><br>
+        <a href="/basketfail?reason=cancelled&data={{ data }}">
         <button class="button is-danger is-inverted is-outlined ">
         CANCEL
       </button>
+        </a>
     </div>
   </div>
 </div>
+<style type="text/css">
 
+.dev-float{
+	position:fixed;
+	width:65px;
+	height:65px;
+	bottom:40px;
+	right:40px;
+	background-color: #00d5aa;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #1d1d1d;
+	line-height: 63px;
+    z-index: 3;
+	}
+
+.dev-inner-float{
+    max-width: 90%;
+    max-height: 90%;
+    vertical-align: middle;
+    z-index: 3;
+}
+
+</style>
+
+<a href="/developer" class="dev-float">
+    <svg class="dev-inner-float" fill="#000000" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 32 32" width="512px" height="512px"><path fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="2" d="M14,24h4"/><polyline fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="2" points="20,11 24,15 20,19"/><polyline fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="2" points="12,11 8,15 12,19"/><path d="M10,8.758V6h12v2.758l2,2V6c0-1.102-0.898-2-2-2H10C8.898,4,8,4.898,8,6v4.758L10,8.758z"/><path d="M22,21.242V26H10v-4.758l-2-2V26c0,1.102,0.898,2,2,2h12c1.102,0,2-0.898,2-2v-6.758L22,21.242z"/></svg>
+</a>
 </body>
 </html>

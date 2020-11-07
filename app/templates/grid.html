@@ -15,6 +15,20 @@
             line-height:30px;
             text-align:center;
         }
+        .screen {
+            height: 100px;
+            width: 760px;
+            border: 1px solid #808080;
+           background-color: coral;
+            line-height:100px;
+            text-align:center;
+            vertical-align:middle;
+            font-size: 50px;
+            font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+            font-style: normal;
+            font-variant: normal;
+            font-weight: 700;
+        }
         .walk{
             padding-left:20px;
         }
@@ -39,6 +53,12 @@
             -ms-user-select: none;
             user-select: none;
         }
+        .center {
+            position: absolute;
+            left: 50%;top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
     </style>
 
    
@@ -46,10 +66,14 @@
 </head>
 <body>
 
-    <div class="unselectable" style="border:1px solid gray; width:768px;">
+    <div class="unselectable center" style="border:1px solid gray; width:768px;z-index: 2;">
             <table>
-
-
+            <tr>
+                <td><div class="screen">📺 SCREENgbhv                     📺</div> </td>
+            </tr>
+            </table>
+            <br>
+            <table>
             <tr>
                 <td><div class="seat">A1</div> </td>
                 <td><div class="seat">A2</div></td>
@@ -574,6 +598,7 @@
 
         </table>
     </div>
+    <div style="z-index: 1;">
     <br>
     <input type="radio" name="ticketType" id="ticketTypeAdult" value="A" checked >Adult <div style="width:10px;height:10px;border:1px solid gray;background: blue;display:inline-block;"> </div><br>
     <input type="radio" name="ticketType" id="ticketTypeChild" value="C" >Child <div style="width:10px;height:10px;border:1px solid gray;background: red;display:inline-block;"> </div><br>
@@ -632,11 +657,43 @@
       window.location.replace("basket" + queryString);
       }
       var postarray = function() {
-        
-        post(JSON.stringify(selected))
+        if (JSON.stringify(selected) !== "{}") {
+            post(JSON.stringify(selected))
+        }
+        else {
+            alert("You Must Book A Seat!")
+        }
       }
     </script>
-    {{ allSeats }}
+    </div>
+<style type="text/css">
 
+.dev-float{
+	position:fixed;
+	width:65px;
+	height:65px;
+	bottom:40px;
+	right:40px;
+	background-color: #00d5aa;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+	box-shadow: 2px 2px 3px #1d1d1d;
+	line-height: 63px;
+    z-index: 3;
+	}
+
+.dev-inner-float{
+    max-width: 90%;
+    max-height: 90%;
+    vertical-align: middle;
+    z-index: 3;
+}
+
+</style>
+
+<a href="/developer" class="dev-float">
+    <svg class="dev-inner-float" fill="#000000" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 32 32" width="512px" height="512px"><path fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="2" d="M14,24h4"/><polyline fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="2" points="20,11 24,15 20,19"/><polyline fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="2" points="12,11 8,15 12,19"/><path d="M10,8.758V6h12v2.758l2,2V6c0-1.102-0.898-2-2-2H10C8.898,4,8,4.898,8,6v4.758L10,8.758z"/><path d="M22,21.242V26H10v-4.758l-2-2V26c0,1.102,0.898,2,2,2h12c1.102,0,2-0.898,2-2v-6.758L22,21.242z"/></svg>
+</a>
 </body>
 </html>

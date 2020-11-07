@@ -74,30 +74,81 @@ def checkIfBooked(file, data):
 
 @app.route('/')
 def home():
-    # thread = threading.Thread(target=editCell, args=("test.xlsx", 4, 2, "C"))
-    # thread.start()
-    return render_template("grid.html", allSeats=getAllSeatsFormatted("app/static/test.xlsx"))
+    tryTimer = 0
+    while tryTimer < 30:
+        try:
+            # thread = threading.Thread(target=editCell, args=("test.xlsx", 4, 2, "C"))
+            # thread.start()
+            return render_template("grid.html", allSeats=getAllSeatsFormatted("app/static/test.xlsx"))
+        except:
+            tryTimer += 1
+            time.sleep(0.3)
+
+    return render_template("basketfail.html", reasonText="There Was An Error, Please Refresh The Page!")
 
 
 @app.route('/book')
 def book():
-    data_to_excel(request.args.get('data'))
-    return "booked"
+    tryTimer = 0
+    while tryTimer < 30:
+        try:
+            data_to_excel(request.args.get('data'))
+            return render_template("book.html")
+        except:
+            tryTimer += 1
+            time.sleep(0.3)
+
+    return render_template("basketfail.html", reasonText="There Was An Error, Please Refresh The Page!")
 
 
-@app.route('/basket')
+@app.route('/basket', methods=["GET"])
 def basket():
-    if checkIfBooked("app/static/test.xlsx", request.args.get('data')):
-        return "Failed (Seat Has Already Been Booked)"
-    else:
-        basket_to_excel(request.args.get('data'))
-        threading.Thread(target=basketTimerCheck, args=[request.args.get('data'), 15]).start()
-        return render_template("basket.html", data=request.args.get('data'))
+    tryTimer = 0
+    while tryTimer < 30:
+        try:
+            if checkIfBooked("app/static/test.xlsx", request.args.get('data')):
+                return "Failed (Seat Has Already Been Booked)"
+            elif request.args.get('data') == "{}":
+                return render_template("basketfail.html", reasonText="You Must Pick A Seat!")
+            else:
+                threading.Thread(target=basketTimerCheck, args=[request.args.get('data'), 15]).start()
+                basket_to_excel(request.args.get('data'))
+                return render_template("basket.html", data=request.args.get('data'))
+        except:
+            tryTimer += 1
+            time.sleep(0.3)
+
+    return render_template("basketfail.html", reasonText="There Was An Error, Please Refresh The Page!")
 
 
 @app.route('/basketfail')
 def basketfail():
-    return render_template("basketfail.html")
+    tryTimer = 0
+    while tryTimer < 30:
+        try:
+            if request.args.get('reason') == "timeout":
+                return render_template("basketfail.html", reasonText="You Ran Out Of Time!")
+            elif request.args.get('reason') == "cancelled":
+                data = json.loads(request.args.get('data'))
+                dataTimerCheckIteration = 0
+                while dataTimerCheckIteration < len(data.keys()):
+                    keys = list(data.keys())
+                    if checkCell("app/static/test.xlsx", changeToExcelCoords(keys[dataTimerCheckIteration])[0],
+                                 changeToExcelCoords(keys[dataTimerCheckIteration])[1], "B"):
+                        editCell("app/static/test.xlsx", changeToExcelCoords(keys[dataTimerCheckIteration])[0],
+                                 changeToExcelCoords(keys[dataTimerCheckIteration])[1], "")
+                    dataTimerCheckIteration = dataTimerCheckIteration + 1
+                return render_template("basketfail.html", reasonText="Your Seats Have Been Cancelled!")
+        except:
+            tryTimer += 1
+            time.sleep(0.3)
+
+    return render_template("basketfail.html", reasonText="There Was An Error, Please Refresh The Page!")
+
+
+@app.route('/developer')
+def developer():
+    return render_template("developer.html")
 
 
 if __name__ == '__main__':

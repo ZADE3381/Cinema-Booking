@@ -1,7 +1,7 @@
-import os
+from functools import wraps
 import json
 import time
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, Response
 import threading
 from app.dataToCoords import *
 from app.excelEditor import editCell, getAllSeats, checkCell
@@ -9,6 +9,33 @@ import datetime
 
 dt = datetime.datetime.now()
 app = Flask(__name__)
+
+
+def check_auth(username, password):
+    """This function is called to check if a username /
+    password combination is valid.
+    """
+    return username == 'mrmannas' and password == 'excel' or username == "zade" and password == "Fi4sc099"
+
+
+def authenticate():
+    """Sends a 401 response that enables basic auth"""
+    return Response(
+        'Could not verify your access level for that URL.\n'
+        'You have to login with proper credentials', 401,
+        {'WWW-Authenticate': 'Basic realm="Login Required"'})
+
+
+def requires_auth(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        auth = request.authorization
+        if not auth or not check_auth(auth.username, auth.password):
+            return authenticate()
+        return f(*args, **kwargs)
+
+    return decorated
+
 
 def basket_to_excel(rawData):
     data = json.loads(rawData)
@@ -73,6 +100,7 @@ def checkIfBooked(file, data):
 
 
 @app.route('/')
+@requires_auth
 def home():
     tryTimer = 0
     while tryTimer < 30:
@@ -88,6 +116,7 @@ def home():
 
 
 @app.route('/book')
+@requires_auth
 def book():
     tryTimer = 0
     while tryTimer < 30:
@@ -102,6 +131,7 @@ def book():
 
 
 @app.route('/basket', methods=["GET"])
+@requires_auth
 def basket():
     tryTimer = 0
     while tryTimer < 30:
@@ -122,6 +152,7 @@ def basket():
 
 
 @app.route('/basketfail')
+@requires_auth
 def basketfail():
     tryTimer = 0
     while tryTimer < 30:
@@ -147,11 +178,13 @@ def basketfail():
 
 
 @app.route('/developer')
+@requires_auth
 def developer():
     return render_template("developer.html")
 
 
 @app.route('/upload', methods=['POST'])
+@requires_auth
 def upload_file():
     if request.method == 'POST':
         f = request.files['file']

@@ -1,3 +1,4 @@
+import os
 import json
 import time
 from flask import Flask, render_template, request
@@ -9,13 +10,12 @@ import datetime
 dt = datetime.datetime.now()
 app = Flask(__name__)
 
-
 def basket_to_excel(rawData):
     data = json.loads(rawData)
     data_to_excelIteration = 0
     while data_to_excelIteration < len(data.keys()):
         keys = list(data.keys())
-        editCell("app/static/test.xlsx", changeToExcelCoords(keys[data_to_excelIteration])[0],
+        editCell("app/static/booking.xlsx", changeToExcelCoords(keys[data_to_excelIteration])[0],
                  changeToExcelCoords(keys[data_to_excelIteration])[1], "B")
         data_to_excelIteration = data_to_excelIteration + 1
 
@@ -26,9 +26,9 @@ def basketTimerCheck(rawData, timer):
     basketTimerCheckIteration = 0
     while basketTimerCheckIteration < len(data.keys()):
         keys = list(data.keys())
-        if checkCell("app/static/test.xlsx", changeToExcelCoords(keys[basketTimerCheckIteration])[0],
+        if checkCell("app/static/booking.xlsx", changeToExcelCoords(keys[basketTimerCheckIteration])[0],
                      changeToExcelCoords(keys[basketTimerCheckIteration])[1], "B"):
-            editCell("app/static/test.xlsx", changeToExcelCoords(keys[basketTimerCheckIteration])[0],
+            editCell("app/static/booking.xlsx", changeToExcelCoords(keys[basketTimerCheckIteration])[0],
                      changeToExcelCoords(keys[basketTimerCheckIteration])[1], "")
         basketTimerCheckIteration = basketTimerCheckIteration + 1
 
@@ -46,7 +46,7 @@ def data_to_excel(rawData):
     data_to_excelIteration = 0
     while data_to_excelIteration < len(data.keys()):
         keys = list(data.keys())
-        editCell("app/static/test.xlsx", changeToExcelCoords(keys[data_to_excelIteration])[0],
+        editCell("app/static/booking.xlsx", changeToExcelCoords(keys[data_to_excelIteration])[0],
                  changeToExcelCoords(keys[data_to_excelIteration])[1], data[keys[data_to_excelIteration]])
         data_to_excelIteration = data_to_excelIteration + 1
 
@@ -56,7 +56,7 @@ def removeBasketFromExcel(rawData):
     data_to_excelIteration = 0
     while data_to_excelIteration < len(data.keys()):
         keys = list(data.keys())
-        editCell("app/static/test.xlsx", changeToExcelCoords(keys[data_to_excelIteration])[0],
+        editCell("app/static/booking.xlsx", changeToExcelCoords(keys[data_to_excelIteration])[0],
                  changeToExcelCoords(keys[data_to_excelIteration])[1], "")
         data_to_excelIteration = data_to_excelIteration + 1
 
@@ -77,9 +77,9 @@ def home():
     tryTimer = 0
     while tryTimer < 30:
         try:
-            # thread = threading.Thread(target=editCell, args=("test.xlsx", 4, 2, "C"))
+            # thread = threading.Thread(target=editCell, args=("booking.xlsx", 4, 2, "C"))
             # thread.start()
-            return render_template("grid.html", allSeats=getAllSeatsFormatted("app/static/test.xlsx"))
+            return render_template("grid.html", allSeats=getAllSeatsFormatted("app/static/booking.xlsx"))
         except:
             tryTimer += 1
             time.sleep(0.3)
@@ -106,7 +106,7 @@ def basket():
     tryTimer = 0
     while tryTimer < 30:
         try:
-            if checkIfBooked("app/static/test.xlsx", request.args.get('data')):
+            if checkIfBooked("app/static/booking.xlsx", request.args.get('data')):
                 return "Failed (Seat Has Already Been Booked)"
             elif request.args.get('data') == "{}":
                 return render_template("basketfail.html", reasonText="You Must Pick A Seat!")
@@ -133,9 +133,9 @@ def basketfail():
                 dataTimerCheckIteration = 0
                 while dataTimerCheckIteration < len(data.keys()):
                     keys = list(data.keys())
-                    if checkCell("app/static/test.xlsx", changeToExcelCoords(keys[dataTimerCheckIteration])[0],
+                    if checkCell("app/static/booking.xlsx", changeToExcelCoords(keys[dataTimerCheckIteration])[0],
                                  changeToExcelCoords(keys[dataTimerCheckIteration])[1], "B"):
-                        editCell("app/static/test.xlsx", changeToExcelCoords(keys[dataTimerCheckIteration])[0],
+                        editCell("app/static/booking.xlsx", changeToExcelCoords(keys[dataTimerCheckIteration])[0],
                                  changeToExcelCoords(keys[dataTimerCheckIteration])[1], "")
                     dataTimerCheckIteration = dataTimerCheckIteration + 1
                 return render_template("basketfail.html", reasonText="Your Seats Have Been Cancelled!")
@@ -149,6 +149,14 @@ def basketfail():
 @app.route('/developer')
 def developer():
     return render_template("developer.html")
+
+
+@app.route('/upload', methods=['POST'])
+def upload_file():
+    if request.method == 'POST':
+        f = request.files['file']
+        f.save(".\\app\\static\\booking.xlsx")
+        return render_template("upload.html")
 
 
 if __name__ == '__main__':

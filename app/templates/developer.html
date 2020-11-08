@@ -1,10 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="UTF-8">
+  <title>Basket Failed</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat:400,700'>
+<style type="text/css">
+html {
+  font-family: 'Montserrat', sans-serif;
+}
+
+pre {
+  background: #213446;
+  color: white;
+}
+
+/* input file style */
+
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+</style>
+
 </head>
 <body>
-test
+<!-- partial:index.partial.html -->
+<div class="hero is-dark is-fullheight">
+  <div class="hero-body">
+    <div id="body" class="container has-text-centered">
+            <br>
+                <form action="/upload" method = "POST" enctype = "multipart/form-data">
+                    <div class="upload-btn-wrapper" style="cursor: pointer;">
+                      <button class="button is-primary is-large is-inverted is-outlined is-rounded">Upload a file</button>
+                      <input style="cursor: pointer;z-index: 1" class="button is-primary is-large is-inverted is-outlined is-rounded" type="file" name="file" onchange="this.form.submit();" />
+                    </div>
+                    <br>
+                  (Do Not Do This While File Is Being Edited!)
+                    </form>
+
+            <br><br>
+      <button class="button is-primary is-large is-inverted is-outlined is-rounded">
+        Download Excel File
+      </button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
